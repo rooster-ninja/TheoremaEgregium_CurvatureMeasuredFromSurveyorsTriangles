@@ -1,6 +1,8 @@
 # North America on an Earth-curvature dome (K = 2.464 × 10⁻¹⁴ m⁻²)
 
-### 🌐 [Open the 3D model (rotate freely in the browser)](NorthAmerica_EarthDome_K2.464.stl)
+## 📄 [Read the model page, with the rotatable 3D viewer](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/model/)
+
+Also: [STL in GitHub's 3D viewer](NorthAmerica_EarthDome_K2.464.stl)
 
 ![North America Earth dome, iso view](preview_iso.png)
 
@@ -40,6 +42,12 @@ Each flat triangle has zero curvature inside it. All the curvature sits at the c
 
 The angles alone, measured inside the faceted surface, give back the sphere's curvature. That is Gauss's result on a small scale.
 
+## Where people live on the surface
+
+![City population density on the dome](population_band.png)
+
+80% of North America's city population lives between 19.3° N and 43.7° N (median 34.0° N). Worldwide, half of all city population lives between 13.1° N and 39.0° N (median 29.6° N), and 85% north of the equator. City populations only (Natural Earth populated places, `pop_max`); rural populations are not counted. Built by [`pop_scene.py`](pop_scene.py).
+
 ## Star map
 
 The star layer carries a star chart as a decal (in the SolidCraft file only; an STL holds shape, not images). It is centred on the north celestial pole and shown as seen looking up from inside the sky, so it reads mirror-imaged from above. Stars are the ~5 000 brighter than magnitude 6 from the Yale Bright Star Catalogue (via [d3-celestial](https://github.com/ofrohn/d3-celestial)), sized by magnitude and coloured by B−V, with constellation lines and an RA/Dec grid. Image: [`starmap.jpg`](starmap.jpg).
@@ -52,4 +60,6 @@ The star layer carries a star chart as a decal (in the SolidCraft file only; an 
 | [`NorthAmerica_EarthDome_K2.464.solidcraft`](NorthAmerica_EarthDome_K2.464.solidcraft) | SolidCraft design: the 10 land meshes, the ocean and star slabs with colours, the star-map decal, and `ocean_thickness` / `star_thickness` parameters |
 | [`na_dome_mesh.py`](na_dome_mesh.py) | Rebuilds the land meshes. `--tri` sets triangle size in km, `--base` the lowest coast height in mm. Needs Natural Earth `ne_50m_admin_0_countries.geojson` |
 | [`starmap.jpg`](starmap.jpg) | The star chart image (4096 × 4096) |
-| `preview_*.png` | Renders from SolidCraft |
+| [`index.html`](index.html) | The model page (GitHub Pages) |
+| [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
+| `population_band.png`, `preview_*.png` | Figures and SolidCraft renders |

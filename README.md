@@ -51,7 +51,7 @@ The angles are the weak link: pointing noise (≈ ± 1.3″ per closure) is the 
 | `sources/` | Page extracts from the scans. `*_annotated.pdf` carry the checks as PDF notes: green = verified, red = misprint |
 | `data/` | The input KML, per-triangle results (`triangles_rule.csv`, `triangles_excess.csv`), fit and chain results as JSON |
 | `scripts/` | Python that reproduces every number and chart; see `scripts/README.md` |
-| [`model/`](model) | 3D model: North America on a dome with Earth's curvature (K = 2.464 × 10⁻¹⁴ m⁻²), with ocean and star-map layers. [STL (3D viewer)](model/NorthAmerica_EarthDome_K2.464.stl), SolidCraft file, and a discrete angle-deficit check of K |
+| [`model/`](model) | 3D model: North America on a dome with Earth's curvature (K = 2.464 × 10⁻¹⁴ m⁻²), with ocean and star-map layers. [Model page with rotatable viewer](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/model/), [STL](model/NorthAmerica_EarthDome_K2.464.stl), SolidCraft file, an angle-deficit check of K, and where the population lives on the dome |
 
 ## Sources
 
