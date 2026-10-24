@@ -27,7 +27,9 @@ For comparison only: the ellipsoid's 1/(MN) over the same triangles is 2.462 × 
 | Ocean layer | 6 900 × 8 600 × 50 mm, z = −50 to 0 |
 | Star plane | A single plane at z = −50 mm, drawn as a disc 80 m across (a circle of infinite radius, K = 0) |
 
-Coastline points are laid out by distance along the surface from the centre (azimuthal equidistant) and lifted onto the sphere. Positions are set by angle, so K sets the size of everything: the measured K (a slightly larger sphere than the 6 371 km mean radius) makes the model 0.28% larger than a mean-radius one, with the same shape.
+Coastline points are laid out by distance along the surface from the centre (azimuthal equidistant) and lifted onto the sphere.
+
+**Why the measured K changes the size, not the shape.** The coastline is placed by latitude and longitude, which are angles. On a sphere, distance along the surface = radius × angle, so the continent's size comes from the sphere's size. The measured K (2.450 × 10⁻¹⁴ m⁻²) gives a radius of 6 388.8 km, 0.28% larger than the 6 371 km mean radius. The same angles on a larger sphere make the whole model 0.28% larger: wider, longer, and taller at the peak (1 938 mm instead of 1 934). The shape is identical, because all spheres are the same shape at different sizes. With the coastline fixed by angles, K changes only the model's overall size, not its proportions.
 
 ![Side view](preview_front.png)
 
