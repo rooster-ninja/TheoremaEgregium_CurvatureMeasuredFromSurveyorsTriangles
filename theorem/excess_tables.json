@@ -1,0 +1,61 @@
+{
+  "lat_deg": 50.2,
+  "R_G_km": 6382.0,
+  "R_G_range_km": [
+    6356.8,
+    6399.6
+  ],
+  "excess": [
+    {
+      "side_km": 10,
+      "area_km2": 43.3,
+      "eps_arcsec": 0.219
+    },
+    {
+      "side_km": 30,
+      "area_km2": 389.7,
+      "eps_arcsec": 1.974
+    },
+    {
+      "side_km": 55,
+      "area_km2": 1309.9,
+      "eps_arcsec": 6.633
+    },
+    {
+      "side_km": 100,
+      "area_km2": 4330.1,
+      "eps_arcsec": 21.929
+    }
+  ],
+  "circle": [
+    {
+      "r_km": 1,
+      "deficit_m": 2.6e-05,
+      "ppm": 0.004
+    },
+    {
+      "r_km": 10,
+      "deficit_m": 0.025711,
+      "ppm": 0.409
+    },
+    {
+      "r_km": 25,
+      "deficit_m": 0.401734,
+      "ppm": 2.558
+    },
+    {
+      "r_km": 55,
+      "deficit_m": 4.277669,
+      "ppm": 12.378
+    }
+  ],
+  "gauss_triangle": {
+    "sides_km": [
+      69,
+      85,
+      107
+    ],
+    "area_km2": 2929.4,
+    "eps_arcsec": 14.83
+  }
+}

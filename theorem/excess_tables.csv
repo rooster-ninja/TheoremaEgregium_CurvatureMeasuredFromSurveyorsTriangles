@@ -1,0 +1,10 @@
+table,case,area_km2,excess_arcsec_or_deficit_m,relative_deficit_ppm
+excess,equilateral 10 km,43.3,0.219,
+excess,equilateral 30 km,389.7,1.974,
+excess,equilateral 55 km,1309.9,6.633,
+excess,equilateral 100 km,4330.1,21.929,
+excess,Gauss triangle 69/85/107 km,2929.4,14.83,
+circle,geodesic radius 1 km,,2.6e-05,0.004
+circle,geodesic radius 10 km,,0.025711,0.409
+circle,geodesic radius 25 km,,0.401734,2.558
+circle,geodesic radius 55 km,,4.277669,12.378

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Background to the report: Gauss's Theorema Egregium, its history and name, how it compares to other theorems, sphere versus plane, and Earth-scale numbers for a distance-only curvature test.">
+<title>The Remarkable Theorem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column of numbered "Surface Lab" cards on cream survey paper; tables scroll inside their own frames */
+:root{
+  --paper:#f5f0e4; --card:#fbf8f1; --ink:#1d1f24; --muted:#5d5f66; --rule:#ddd5c2;
+  --blue:#1f4fa8; --blue-soft:#e3e9f5; --btn:#1d1f24; --btn-fg:#f5f0e4;
+  --serif:"Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#16181d; --card:#1e2128; --ink:#ece6d8; --muted:#a6a59e; --rule:#343843;
+  --blue:#8fb0ee; --blue-soft:#232c3d; --btn:#ece6d8; --btn-fg:#16181d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#16181d; --card:#1e2128; --ink:#ece6d8; --muted:#a6a59e; --rule:#343843;
+  --blue:#8fb0ee; --blue-soft:#232c3d; --btn:#ece6d8; --btn-fg:#16181d; color-scheme:dark}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+a{color:var(--blue)}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
+main{max-width:46rem;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:500}
+header{display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
+h1{font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.02;font-weight:400;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 em{font-style:italic}
+.dek{font-size:1.2rem;color:var(--muted);margin:0;max-width:38rem}
+section.card{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:24px clamp(16px,4vw,32px);display:flex;flex-direction:column;gap:14px;min-width:0}
+h2{font-size:1.7rem;font-weight:500;margin:0;line-height:1.2;text-wrap:balance}
+p{margin:0}
+.formula{font-family:var(--serif);font-size:1.25rem;text-align:center;padding:14px 8px;background:var(--blue-soft);border-radius:4px;overflow-x:auto;white-space:nowrap}
+.formula i{font-style:italic}
+.formula .note{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);margin-top:6px;white-space:normal;text-transform:uppercase}
+blockquote{margin:0;padding:4px 0 4px 18px;border-left:2px solid var(--blue);font-style:italic}
+blockquote .tr{display:block;font-style:normal;color:var(--muted);font-size:.95rem;margin-top:6px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:.95rem;font-variant-numeric:tabular-nums}
+th{font-variant:all-small-caps;letter-spacing:.06em;font-weight:600;text-align:left;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;white-space:nowrap}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.timeline li{display:grid;grid-template-columns:5.2rem 1fr;gap:12px}
+.timeline .yr{font-family:var(--mono);font-size:.82rem;color:var(--blue);padding-top:3px}
+.timeline .yr + span{min-width:0}
+.callout{font-size:.95rem;color:var(--muted);border-top:1px dashed var(--rule);padding-top:12px}
+details.sources{align-self:flex-start;width:100%}
+details.sources summary{display:inline-block;list-style:none;cursor:pointer;background:var(--btn);color:var(--btn-fg);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:10px 16px;border-radius:4px}
+details.sources summary::-webkit-details-marker{display:none}
+details.sources summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+details.sources ol{margin:16px 0 0;padding-left:1.4rem;display:flex;flex-direction:column;gap:10px;font-size:.92rem}
+details.sources a{color:var(--blue)}
+.src-note{color:var(--muted)}
+footer{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<main>
+<header>
+  <span class="eyebrow">Theorema Egregium · Deep dive · 24 Oct 2026</span>
+  <h1>The <em>Remarkable</em> Theorem</h1>
+  <p class="dek">Gauss proved in 1827 that a surface's curvature can be measured entirely from inside it. Here is where that came from, what the name means, how it compares to other theorems, and what it says about spheres versus flat planes. Background to the <a href="../index.html">report</a>.</p>
+</header>
+
+<section class="card">
+  <span class="eyebrow">1 · The statement</span>
+  <h2>Bend it, don't stretch it, and the curvature stays put</h2>
+  <p>Article 12 of Gauss's <i>Disquisitiones generales circa superficies curvas</i> reads:</p>
+  <blockquote>Si superficies curva in quamcunque aliam superficiem explicatur, mensura curvaturae in singulis punctis invariata manet.
+    <span class="tr">If a curved surface is developed onto any other surface, the measure of curvature at each point stays unchanged.</span></blockquote>
+  <p>Gauss defined curvature from outside: the product of the two principal curvatures, which needs the surface normal and therefore the third dimension. His surprise was that the same number falls out of the line element alone, the distances measured within the surface.</p>
+  <div class="formula"><i>ds</i>² = <i>E</i> <i>du</i>² + 2<i>F</i> <i>du</i> <i>dv</i> + <i>G</i> <i>dv</i>²
+    <span class="note">The line element · first fundamental form</span></div>
+  <div class="formula"><i>K</i> = κ₁κ₂ = (<i>LN</i> − <i>M</i>²) ⁄ (<i>EG</i> − <i>F</i>²)
+    <span class="note">Extrinsic definition · needs the normal</span></div>
+  <div class="formula"><i>K</i> = − (∂²√<i>G</i> ⁄ ∂<i>r</i>²) ⁄ √<i>G</i>
+    <span class="note">Intrinsic form in geodesic polar coordinates, ds² = dr² + G dθ² · plane G = r², sphere G = R² sin²(r/R)</span></div>
+  <p>Plug in the sphere: √<i>G</i> = <i>R</i> sin(<i>r</i>/<i>R</i>), its second derivative is −sin(<i>r</i>/<i>R</i>)/<i>R</i>, so <i>K</i> = 1/<i>R</i>² everywhere. For the plane, √<i>G</i> = <i>r</i> and <i>K</i> = 0. Distances alone told the difference.</p>
+</section>
+
+<section class="card">
+  <span class="eyebrow">2 · History</span>
+  <h2>Born from surveying, not from pure speculation</h2>
+  <ol class="timeline">
+    <li><span class="yr">1629</span><span>Albert Girard: a spherical triangle's area equals <i>R</i>² times its angle excess.</span></li>
+    <li><span class="yr">1775</span><span>Euler shows no map of a sphere can preserve all distances. The Egregium later explains why in one line.</span></li>
+    <li><span class="yr">1787</span><span>Legendre states his theorem: a small spherical triangle can be solved as a plane triangle with the same sides if one third of the excess is taken off each angle.</span></li>
+    <li><span class="yr">1792–98</span><span>Delambre and Méchain survey the Dunkerque–Barcelona meridian. Legendre's proof is printed with Delambre's <i>Méthodes analytiques pour la détermination d'un arc du méridien</i> (Paris, An VII, 1798–99).</span></li>
+    <li><span class="yr">1813–24</span><span>Gauss writes privately to Bolyai, Schumacher and Taurinus about geometry without the parallel postulate. He publishes none of it.</span></li>
+    <li><span class="yr">1818–32</span><span>Gauss runs the triangulation of the Kingdom of Hanover. Every large triangle carries a measurable excess.</span></li>
+    <li><span class="yr">1825</span><span>An unpublished draft, later printed as "New General Investigations", works toward the result.</span></li>
+    <li><span class="yr">8 Oct 1827</span><span>The <i>Disquisitiones</i> is presented to the Göttingen Royal Society: about 40 pages, 29 articles. Printed 1828.</span></li>
+    <li><span class="yr">1848</span><span>Bonnet generalises Gauss's triangle result to Gauss–Bonnet. Bertrand, Diguet and Puiseux give curvature from the circumference of a geodesic circle.</span></li>
+    <li><span class="yr">1854</span><span>Riemann's habilitation lecture lifts intrinsic curvature to any number of dimensions. General relativity runs on this.</span></li>
+  </ol>
+  <p class="callout">The famous story that Gauss tested Euclid with the Inselsberg–Brocken–Hohenhagen triangle is contested. His letters show he thought about angle sums and the parallel postulate, but historians disagree over whether the survey was meant as a test of space itself. Treat it as plausible, not established.</p>
+</section>
+
+<section class="card">
+  <span class="eyebrow">3 · The words</span>
+  <h2>A thing to look at, standing out from the flock</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Word</th><th>Root</th><th>Literal sense</th></tr></thead>
+    <tbody>
+      <tr><td><i>theorema</i></td><td>Greek θεώρημα, from θεωρεῖν "to look at", θεωρός "spectator"</td><td>A sight, a spectacle; in Euclid, a proposition to be proved</td></tr>
+      <tr><td><i>egregium</i></td><td>Latin <i>ē</i> + <i>grex, gregis</i> "flock, herd"</td><td>Out of the flock: distinguished, outstanding</td></tr>
+    </tbody>
+  </table></div>
+  <p><i>Theorem</i> shares its root with <i>theatre</i>. Both are things you watch. <i>Egregium</i> shares its flock with <i>gregarious</i>, <i>congregate</i> and <i>segregate</i>. English <i>egregious</i> came over in the 1530s as a compliment and later flipped to mean outstandingly bad, so "the egregious theorem" is a false friend. Gauss meant remarkable.</p>
+  <p>Gauss was famously sparing with praise for his own work. His motto was <i>pauca sed matura</i>, few but ripe. Lanczos called the name an unusually jubilant gesture for him.</p>
+</section>
+
+<section class="card">
+  <span class="eyebrow">4 · What makes a theorem</span>
+  <h2>A theorem is a proved statement, relative to its axioms</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Kind</th><th>Status</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Axiom / postulate</td><td>Assumed, not proved</td><td>Euclid's fifth (parallel) postulate</td></tr>
+      <tr><td>Definition</td><td>Fixes meaning</td><td><i>K</i> = κ₁κ₂</td></tr>
+      <tr><td>Lemma</td><td>Proved, a stepping stone</td><td>Gauss's lemma on geodesic polar coordinates (art. 16)</td></tr>
+      <tr><td>Theorem</td><td>Proved, important in its own right</td><td>Theorema Egregium (art. 12)</td></tr>
+      <tr><td>Corollary</td><td>Follows quickly from a theorem</td><td>No distance-true flat map of the Earth</td></tr>
+      <tr><td>Conjecture</td><td>Believed, not proved</td><td>Fermat's "Last Theorem" until 1995, a misnomer</td></tr>
+    </tbody>
+  </table></div>
+  <p>Whether a statement is a theorem depends on the axiom system. Drop the parallel postulate and "the angles of a triangle sum to 180°" stops being a theorem at all. That is exactly the gap the sphere exposes.</p>
+  <p>Three things earn the Egregium its adjective: it is <b>surprising</b> (a quantity defined with the third dimension turns out not to need it), it is <b>general</b> (any smooth surface, any coordinates), and it is <b>generative</b> (it is the seed of Riemannian geometry and of measuring curvature from inside a space you cannot leave).</p>
+</section>
+
+<section class="card">
+  <span class="eyebrow">5 · Among other theorems</span>
+  <h2>How it compares</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Theorem</th><th>Date</th><th>What it says</th><th>Relation to the Egregium</th></tr></thead>
+    <tbody>
+      <tr><td>Pythagoras</td><td>c. 500 BC</td><td><i>a</i>² + <i>b</i>² = <i>c</i>²</td><td>True only where <i>K</i> = 0. On a sphere it becomes cos <i>c</i> = cos <i>a</i> cos <i>b</i> (unit radius).</td></tr>
+      <tr><td>Girard</td><td>1629</td><td>Area = <i>R</i>²(<i>A</i>+<i>B</i>+<i>C</i>−π)</td><td>The constant-<i>K</i> special case of Gauss's art. 20</td></tr>
+      <tr><td>Legendre</td><td>1787</td><td>Small spherical triangle ≈ plane triangle, angles less ε/3</td><td>The working tool of Delambre's computations; Gauss refined it (arts. 26–28)</td></tr>
+      <tr><td>Quadratic reciprocity</td><td>1796</td><td>Number theory; Gauss's "golden theorem"</td><td>Gauss's other favourite, also given a Latin nickname</td></tr>
+      <tr><td>Gauss's triangle theorem</td><td>1827</td><td>Angle excess = ∫∫ <i>K dA</i></td><td>Same paper, art. 20; Gauss ranked it among the most elegant results</td></tr>
+      <tr><td>Bertrand–Diguet–Puiseux</td><td>1848</td><td><i>K</i> = (3/π) lim (2π<i>r</i> − <i>C</i>)/<i>r</i>³</td><td>Curvature from distances only, no angles</td></tr>
+      <tr><td>Gauss–Bonnet</td><td>1848</td><td>∫∫ <i>K dA</i> + ∮ κ<sub>g</sub> <i>ds</i> = 2πχ</td><td>Globalises art. 20; links curvature to topology</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="card">
+  <span class="eyebrow">6 · Sphere versus plane</span>
+  <h2>Three constant-curvature geometries</h2>
+  <p>A surface of constant <i>K</i> is locally one of three types. Euclid's plane sits in the middle.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Property</th><th>Sphere, <i>K</i> &gt; 0</th><th>Plane, <i>K</i> = 0</th><th>Hyperbolic, <i>K</i> &lt; 0</th></tr></thead>
+    <tbody>
+      <tr><td>Triangle angle sum</td><td>&gt; 180°</td><td>= 180°</td><td>&lt; 180°</td></tr>
+      <tr><td>Parallels through a point</td><td>None (great circles meet)</td><td>Exactly one</td><td>Infinitely many</td></tr>
+      <tr><td>Circle circumference</td><td>2π<i>R</i> sin(<i>r</i>/<i>R</i>), less than 2π<i>r</i></td><td>2π<i>r</i></td><td>more than 2π<i>r</i></td></tr>
+      <tr><td>Similar, non-congruent triangles</td><td>Impossible</td><td>Possible</td><td>Impossible</td></tr>
+      <tr><td>Triangle area from angles alone</td><td>Yes: <i>R</i>² × excess</td><td>No</td><td>Yes: deficit ⁄ |<i>K</i>|</td></tr>
+      <tr><td>Flattens onto a plane without stretching</td><td>No</td><td>Yes</td><td>No</td></tr>
+    </tbody>
+  </table></div>
+  <p>A cylinder or a rolled map has <i>K</i> = 0. It curves in space but not intrinsically, which is why paper rolls and does not wrinkle. A sphere cannot be flattened, so every world map distorts something. The pizza-slice trick works the same way: fold the crust across and the slice cannot also droop along its length.</p>
+</section>
+
+<section class="card">
+  <span class="eyebrow">7 · How big is the effect on Earth</span>
+  <h2>Spherical excess and circumference deficit</h2>
+  <p>Using the Gaussian mean radius √(<i>MN</i>) of the WGS84 ellipsoid at 50.2° N, <i>R</i><sub>G</sub> = 6382.0 km. It varies from 6356.8 km at the equator to 6399.6 km at the pole, so <i>K</i> changes by about 1.3% across latitude.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Equilateral side</th><th class="num">Area, km²</th><th class="num">Excess ε, arcsec</th></tr></thead>
+    <tbody>
+      <tr><td>10 km</td><td class="num">43.3</td><td class="num">0.219</td></tr>
+      <tr><td>30 km</td><td class="num">389.7</td><td class="num">1.974</td></tr>
+      <tr><td>55 km</td><td class="num">1 309.9</td><td class="num">6.633</td></tr>
+      <tr><td>100 km</td><td class="num">4 330.1</td><td class="num">21.929</td></tr>
+      <tr><td>Gauss's big triangle, sides ≈ 69 / 85 / 107 km</td><td class="num">2 929.4</td><td class="num">14.83</td></tr>
+    </tbody>
+  </table></div>
+  <p>The <a href="../index.html">report</a> measures K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻² from the angles of 391 surveyors’ triangles (R = 6 388.8 km). These planning tables use the ellipsoid’s Gaussian radius instead; the difference is under 0.3% and does not change any conclusion here. Reproduced by <a href="excess_tables.py"><code>excess_tables.py</code></a>.</p>
+  <p>Rule of thumb: about 197 km² of triangle per arcsecond of excess. The Gauss figure uses rounded side lengths and <i>R</i><sub>G</sub> at 51.5° N, so treat it as ±0.1″.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Geodesic radius <i>r</i></th><th class="num">2π<i>r</i> − <i>C</i></th><th class="num">Relative deficit, ppm</th></tr></thead>
+    <tbody>
+      <tr><td>1 km</td><td class="num">0.03 mm</td><td class="num">0.004</td></tr>
+      <tr><td>10 km</td><td class="num">2.57 cm</td><td class="num">0.409</td></tr>
+      <tr><td>25 km</td><td class="num">40.2 cm</td><td class="num">2.558</td></tr>
+      <tr><td>55 km</td><td class="num">4.28 m</td><td class="num">12.378</td></tr>
+    </tbody>
+  </table></div>
+  <div class="formula">2π<i>r</i> − <i>C</i> ≈ (π⁄3) <i>K</i> <i>r</i>³ &nbsp;&nbsp;⇒&nbsp;&nbsp; (2π<i>r</i> − <i>C</i>) ⁄ 2π<i>r</i> ≈ <i>K r</i>² ⁄ 6
+    <span class="note">Leading term of Bertrand–Diguet–Puiseux</span></div>
+</section>
+
+<section class="card">
+  <span class="eyebrow">8 · Back to the distance-only test</span>
+  <h2>What the theorem promises a ranging network</h2>
+  <p>The Egregium is the licence for your plan: if curvature is intrinsic, a network of surface distances must contain it, with no angles, stars or plumb lines. Bertrand–Diguet–Puiseux makes that concrete. Four points with all six distances measured give another route: on a flat plane their Cayley–Menger determinant is zero, and on a curved surface it departs from zero in proportion to <i>K</i>.</p>
+  <p>The tables set the bar. A 55 km figure carries a 12.4 ppm curvature signal; a 10 km figure carries 0.41 ppm. A ranging error well below those figures, after refraction and the straight-chord-versus-geodesic correction, is what separates <i>K</i> = 1/<i>R</i>² from <i>K</i> = 0. As a rough inductive guide, detecting the 55 km signal at 3σ needs an effective combined error near 4 ppm or better across the network; a 5σ claim needs about 2.5 ppm. These are planning estimates under the spherical model, not results.</p>
+  <p class="callout">One caution carried over from geodesy: radio and light do not travel along the surface. A measured slant range is a chord through refracting air. Reducing it to a geodesic distance needs station heights and a refraction model, and the error in that reduction must go into the same error budget.</p>
+</section>
+
+<details class="sources">
+  <summary>Sources for this page (pages and quotes)</summary>
+  <ol>
+    <li><a href="https://mat.uab.cat/~agusti/esferaImaginaria.pdf" target="_blank" rel="noopener">Reventós &amp; Rodríguez, "L'Esfera Imaginària", commentary on the Disquisitiones (2004)</a> <span class="src-note">pp. 14–18: presentation date 8 Oct 1827, ~40 pages / 29 articles, article map (K = k₁k₂ §8, Egregium §12, Gauss's lemma §16, triangles §20), Latin text of §12; pp. 61–62: polar line element and K = −(√G)<sub>rr</sub>/√G.</span></li>
+    <li><a href="https://old.maa.org/node/105949" target="_blank" rel="noopener">Gouvêa, MAA review of Gauss, General Investigations of Curved Surfaces (Dover, ed. Pesic)</a> <span class="src-note">Paper introduces the Gauss map, E/F/G notation, Gaussian curvature, the Egregium and the triangle form of Gauss–Bonnet; includes the 1825 draft.</span></li>
+    <li><a href="https://arxiv.org/pdf/1402.1018" target="_blank" rel="noopener">Merker, "Le Theorema Egregium de Gauss", arXiv:1402.1018</a> <span class="src-note">p. 1: published 1827–28 after long gestation; intrinsic formula from E, F, G; Gauss letter on angle deficit proportional to area.</span></li>
+    <li><a href="https://thatsmaths.com/2018/12/27/gaussian-curvature-the-theorema-egregium/" target="_blank" rel="noopener">That's Maths, "Gaussian Curvature: the Theorema Egregium"</a> <span class="src-note">Lanczos (1970) on the name as unusually jubilant for the reticent Gauss; Gauss coined "non-Euclidean geometry" but did not publish.</span></li>
+    <li><a href="https://www.etymonline.com/word/egregious" target="_blank" rel="noopener">Etymonline, "egregious"</a> <span class="src-note">From Latin ex grege, out of the flock; in English from the 1530s, first meaning distinguished.</span></li>
+    <li><a href="https://www.etymonline.com/word/theorem" target="_blank" rel="noopener">Etymonline, "theorem"</a> <span class="src-note">Greek theōrēma, a sight or spectacle; in Euclid a proposition to be proved; from theōrein, to look at.</span></li>
+    <li><a href="https://www.cut-the-knot.org/WhatIs/WhatIsTheorem.shtml" target="_blank" rel="noopener">Bogomolny, "What Is Theorem?" (Cut the Knot)</a> <span class="src-note">A theorem depends on the chosen axioms; corollary defined; FLT called a theorem before proof.</span></li>
+    <li><a href="https://www.gutenberg.org/ebooks/36856" target="_blank" rel="noopener">Gauss, General Investigations of Curved Surfaces of 1827 and 1825, tr. Morehead &amp; Hiltebeitel (Princeton, 1902)</a> <span class="src-note">Primary text in English: art. 12 (the Egregium), art. 20 (angle excess of a geodesic triangle), arts. 26–28 (refinement of Legendre's theorem).</span></li>
+    <li><a href="https://books.google.com/books?id=0uIEAAAAQAAJ&amp;pg=PA352" target="_blank" rel="noopener">Legendre, "Mémoire sur les opérations trigonométriques, dont les résultats dépendent de la figure de la terre", Mém. Acad. Roy. Sci. Paris (1787, publ. 1789) 352–383</a> <span class="src-note">Original statement of the one-third-excess rule.</span></li>
+    <li><a href="https://books.google.com/books?id=DBAOAAAAQAAJ" target="_blank" rel="noopener">Delambre &amp; Legendre, Méthodes analytiques pour la détermination d'un arc du méridien (Paris: Crapelet, An VII)</a> <span class="src-note">Delambre's meridian methods, with Legendre's contribution including the proof of his theorem.</span></li>
+    <li><a href="https://mathshistory.st-andrews.ac.uk/Obituaries/Legendre_RAS/" target="_blank" rel="noopener">Obituary of Legendre, Journal of the Royal Astronomical Society 3:4 (1834), via MacTutor</a> <span class="src-note">Credits Legendre's survey-era rule: replace a small spherical triangle by a plane one, subtracting one third of the excess from each angle.</span></li>
+    <li><a href="https://www.numdam.org/item/JMPA_1848_1_13__80_0/" target="_blank" rel="noopener">Bertrand, "Démonstration d'un théorème de M. Gauss", J. Math. Pures Appl. (1) 13 (1848) 80–82</a> <span class="src-note">Curvature from the circumference deficit of a small geodesic circle. Companion notes by Diguet and Puiseux follow in the same volume (<a href="https://www.numdam.org/item/JMPA_1848_1_13__87_0/" target="_blank" rel="noopener">Puiseux, p. 87</a>).</span></li>
+    <li><a href="https://arxiv.org/pdf/2012.11814" target="_blank" rel="noopener">Petrunin &amp; Zamora Barrera, "What is differential geometry: curves and surfaces", arXiv:2012.11814</a> <span class="src-note">Theorem 16.14; circumference expansion c(r) = 2πr − (π/3)K r³ + o(r³); no distance-preserving map from sphere to plane.</span></li>
+    <li><a href="https://mathpages.com/home/kmath156/kmath156.htm" target="_blank" rel="noopener">MathPages, "Did Archimedes Know Gauss-Bonnet?"</a> <span class="src-note">Bonnet stated and proved the general formula in 1848; Gauss published the geodesic-triangle case.</span></li>
+    <li><span class="src-note">Computed for this page: Gaussian mean radius √(MN) on WGS84 (a = 6378.137 km, f = 1/298.257223563); excess = area/R<sub>G</sub>² in arcsec; deficit = (π/3)K r³. Sigma thresholds assume the ppm signal divided by the stated σ, with no systematic error.</span></li>
+  </ol>
+</details>
+
+<footer><a href="../index.html">Back to the report</a> · Theorema Egregium project · rooster.ninja</footer>
+</main>
+
+</body>
+</html>
