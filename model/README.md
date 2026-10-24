@@ -21,7 +21,7 @@ A physical companion to the [report](../README.md). The report measures Earth's 
 | Height | Peak 1 934 mm above the base (near the projection centre); lowest coastline point 50 mm (far side of Greenland) |
 | Base | Flat at z = 0, with vertical walls along the coast |
 | Ocean layer | 6 900 × 8 550 × 50 mm, z = −50 to 0 |
-| Star layer | 16 000 × 16 000 × 50 mm, z = −100 to −50 |
+| Star plane | A single plane at z = −50 mm, drawn as a disc 80 m across (a circle of infinite radius, K = 0) |
 
 The coastline is placed where it sits on the sphere, not on a flat map: points are laid out by distance along the surface from the centre (azimuthal equidistant) and lifted onto the sphere. The 1.9 m rise across the model is Earth's curvature at this scale. Across North America the surface drops about 1 900 km below a plane touching it at the centre.
 
@@ -50,18 +50,20 @@ The angles alone, measured inside the faceted surface, give back the sphere's cu
 
 80% of North America's city population lives between 19.3° N and 43.7° N (median 34.0° N). Worldwide, half of all city population lives between 13.1° N and 39.0° N (median 29.6° N), and 85% north of the equator. City populations only (Natural Earth populated places, `pop_max`); rural populations are not counted. Built by [`pop_scene.py`](pop_scene.py).
 
-## Star map
+## The star plane: a circle of infinite radius
 
-The star layer carries a star chart as a decal (in the SolidCraft file only; an STL holds shape, not images). It is centred on the north celestial pole and shown as seen looking up from inside the sky, so it reads mirror-imaged from above. Stars are the ~5 000 brighter than magnitude 6 from the Yale Bright Star Catalogue (via [d3-celestial](https://github.com/ofrohn/d3-celestial)), sized by magnitude and coloured by B−V, with constellation lines and an RA/Dec grid. Image: [`starmap.jpg`](starmap.jpg).
+The sky is drawn as a single flat plane under the ocean, not a slab. A circle of radius r curves by 1/r and a sphere of radius R has K = 1/R²; as the radius grows without limit both go to zero, so a circle of infinite radius is a line and a sphere of infinite radius is a plane (K = 0).
+
+The chart is a stereographic projection of the celestial sphere from the south celestial pole, r = 2 tan((90° − δ)/2): the north celestial pole is at the centre, the celestial equator at r = 2, and the south pole at infinity, so the whole sky lies on an infinite plane. It is drawn to δ = −45° on a disc 80 m across at z = −50 mm and fades out from −15° to the edge. It is seen from inside the sky, so it reads mirror-imaged from above. Stars: the ~5 000 brighter than magnitude 6 in the Yale Bright Star Catalogue (via [d3-celestial](https://github.com/ofrohn/d3-celestial)). Image: [`starplane.png`](starplane.png); the STL doesn't include it (STL holds shape, not images), but the model page and the SolidCraft file do.
 
 ## Files
 
 | File | What it is |
 | --- | --- |
-| [`NorthAmerica_EarthDome_K2.464.stl`](NorthAmerica_EarthDome_K2.464.stl) | All 12 bodies, mm, binary STL. GitHub shows it in a 3D viewer |
-| [`NorthAmerica_EarthDome_K2.464.solidcraft`](NorthAmerica_EarthDome_K2.464.solidcraft) | SolidCraft design: the 10 land meshes, the ocean and star slabs with colours, the star-map decal, and `ocean_thickness` / `star_thickness` parameters |
+| [`NorthAmerica_EarthDome_K2.464.stl`](NorthAmerica_EarthDome_K2.464.stl) | The 10 landmasses and the ocean slab, mm, binary STL. GitHub shows it in a 3D viewer |
+| [`NorthAmerica_EarthDome_K2.464.solidcraft`](NorthAmerica_EarthDome_K2.464.solidcraft) | SolidCraft design: the 10 land meshes, the ocean slab, the star plane as an image canvas at z = −50 mm, and the `ocean_thickness` parameter |
 | [`na_dome_mesh.py`](na_dome_mesh.py) | Rebuilds the land meshes. `--tri` sets triangle size in km, `--base` the lowest coast height in mm. Needs Natural Earth `ne_50m_admin_0_countries.geojson` |
-| [`starmap.jpg`](starmap.jpg) | The star chart image (4096 × 4096) |
+| [`starplane.png`](starplane.png), [`starplane.py`](starplane.py) | The stereographic star plane (4096 × 4096, transparent edge) and the script that draws it |
 | [`index.html`](index.html) | The model page (GitHub Pages) |
 | [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
 | `population_iso.png`, `population_top.png`, `preview_*.png` | Population figures (isometric and overhead) and SolidCraft renders |

@@ -82,12 +82,12 @@ code{font:13px var(--mono)}
 <header>
   <div class="eyebrow">Theorema Egregium · 3D model · NorthAmerica_EarthDome_K2.464</div>
   <h1>North America on Earth’s curvature</h1>
-  <p class="lede">A 1 : 1 000 000 model of North America whose top surface has the Gaussian curvature of the Earth, K = 1/R² = 2.464 × 10⁻¹⁴ m⁻². It sits on an ocean layer and a star-map layer. Drag to turn it.</p>
+  <p class="lede">A 1 : 1 000 000 model of North America whose top surface has the Gaussian curvature of the Earth, K = 1/R² = 2.464 × 10⁻¹⁴ m⁻². It sits on a flat ocean layer above a star plane. Drag to turn it.</p>
 </header>
 
 <section class="card viewer-card" aria-label="3D model viewer">
   <div class="eyebrow">STL · drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
-  <div id="viewer" role="img" aria-label="Rotatable 3D model of North America on a curved dome above a blue ocean slab and a dark star slab"><div id="vstatus">Loading the model…</div></div>
+  <div id="viewer" role="img" aria-label="Rotatable 3D model of North America on a curved dome above a blue ocean slab and a star chart plane"><div id="vstatus">Loading the model…</div></div>
   <div class="vbar">
     <button class="vbtn" data-view="iso">Iso</button>
     <button class="vbtn" data-view="top">Top</button>
@@ -109,7 +109,7 @@ code{font:13px var(--mono)}
   <p>Flat maps of a continent cannot keep the shapes, distances and areas of the ground all at once. Gauss’s Theorema Egregium says why: the curvature of a surface is fixed by measurements made inside it, so a curved surface can’t be flattened without stretching. This model doesn’t flatten. It puts the coastline where it actually sits on a sphere of radius 6 371 km, scaled down a million times, and builds the land up to that sphere.</p>
   <p>At this scale the Earth is a ball 12.7 m across, and North America is a cap on it. The middle of the continent stands 1.9 m higher than its far coasts. That rise isn’t exaggerated: it is how much a sphere the size of the Earth curves away over 3 000–4 000 km.</p>
   <p>The top of the land is made of flat triangles about 100 km on a side, with every corner on the sphere. The flat triangles let you check the curvature the same way the <a href="../index.html">report</a> measures it from surveyors’ triangles: by angles alone (§3).</p>
-  <p>Under the land is a 50 mm ocean slab. Under that is a 16 m square star slab carrying a chart of the northern sky.</p>
+  <p>Under the land is a 50 mm ocean slab. Under that is the sky, drawn as a single flat plane: a circle of infinite radius carrying a chart of the stars (§5).</p>
 </section>
 
 <section class="card">
@@ -186,17 +186,34 @@ code{font:13px var(--mono)}
 
 <section class="card">
   <div class="eyebrow">5 · The layers underneath</div>
-  <h2>Ocean and stars</h2>
+  <h2>Ocean, and the sky as a circle of infinite radius</h2>
   <div class="tbl"><table>
-    <thead><tr><th>Layer</th><th class="n">Size (mm)</th><th class="n">Height (mm)</th><th>Colour</th></tr></thead>
+    <thead><tr><th>Layer</th><th class="n">Size (mm)</th><th class="n">Height (mm)</th><th class="n">Curvature K</th></tr></thead>
     <tbody>
-      <tr><td>Land (10 bodies)</td><td class="n">6 045 × 7 189 mainland</td><td class="n">0 to 1 934</td><td>grey</td></tr>
-      <tr><td>Ocean</td><td class="n">6 900 × 8 550 × 50</td><td class="n">−50 to 0</td><td>blue #1f5f9e</td></tr>
-      <tr><td>Star field</td><td class="n">16 000 × 16 000 × 50</td><td class="n">−100 to −50</td><td>navy #0b1024 + star map</td></tr>
+      <tr><td>Land (10 bodies)</td><td class="n">6 045 × 7 189 mainland</td><td class="n">0 to 1 934</td><td class="n">1/R² = 2.464 × 10⁻⁸ mm⁻²</td></tr>
+      <tr><td>Ocean slab</td><td class="n">6 900 × 8 550 × 50</td><td class="n">−50 to 0</td><td class="n">0 (flat)</td></tr>
+      <tr><td>Star plane</td><td class="n">a single plane, drawn as an 80 000 disc</td><td class="n">−50</td><td class="n">0 (circle of radius → ∞)</td></tr>
     </tbody>
   </table></div>
-  <p>The star slab carries a chart of the sky as an image (in the SolidCraft file; an STL keeps shape, not pictures). It is centred on the north celestial pole and shown as seen looking up from inside the sky, so it reads mirror-imaged from above. The stars are the roughly 5 000 brighter than magnitude 6 in the Yale Bright Star Catalogue, sized by brightness and coloured by temperature, with constellation lines and an RA/Dec grid. It is decorative and not tied to the dome’s orientation.</p>
-  <figure><img src="starmap_preview.jpg" alt="Star chart centred on the north celestial pole with constellation lines" loading="lazy"><figcaption>The star chart on the bottom slab (<a href="starmap.jpg">full 4096 × 4096 image</a>).</figcaption></figure>
+  <h3>Why a circle of infinite radius</h3>
+  <p>A circle of radius r curves by 1/r. A sphere of radius R has Gaussian curvature 1/R². Let the radius grow without limit and both go to zero: a circle of infinite radius is a straight line, and a sphere of infinite radius is a plane. So the star layer is not a slab with thickness but a single plane, the flat limit of the same family of surfaces the land sits on.</p>
+  <math display="block" class="formula"><mrow><munder><mi>lim</mi><mrow><mi>R</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><msup><mi>R</mi><mn>2</mn></msup></mfrac><mo>=</mo><mn>0</mn></mrow></math>
+  <h3>The sky laid flat: stereographic projection</h3>
+  <p>The sky is a sphere around the observer, so putting it on a plane is the same problem as a flat map of the Earth: by the Theorema Egregium it can’t be done without stretching. The chart uses the stereographic projection, which keeps the shape of small figures (angles are preserved) and lets sizes grow away from the centre. Projected from the south celestial pole, the whole sky lands on an infinite plane:</p>
+  <math display="block" class="formula"><mrow><mi>r</mi><mo>=</mo><mn>2</mn><mspace width="0.2em"/><mi>tan</mi><mo>(</mo><mfrac><mrow><mn>90</mn><mo>°</mo><mo>−</mo><mi>δ</mi></mrow><mn>2</mn></mfrac><mo>)</mo></mrow></math>
+  <div class="tbl"><table>
+    <thead><tr><th>Declination δ</th><th class="n">r (sky radii)</th><th class="n">Place on the disc</th></tr></thead>
+    <tbody>
+      <tr><td>+90° (north celestial pole, near Polaris)</td><td class="n">0</td><td class="n">centre</td></tr>
+      <tr><td>0° (celestial equator)</td><td class="n">2.000</td><td class="n">0.414 of the drawn radius</td></tr>
+      <tr><td>−15° (start of the fade)</td><td class="n">2.607</td><td class="n">0.540</td></tr>
+      <tr><td>−45° (edge of the drawn disc)</td><td class="n">4.828</td><td class="n">1.000</td></tr>
+      <tr><td>−90° (south celestial pole)</td><td class="n">∞</td><td class="n">at infinity</td></tr>
+    </tbody>
+  </table></div>
+  <p>A plane can’t be drawn to infinity, so the chart is drawn to −45° on a disc 80 m across (centred under the model at z = −50 mm) and fades out from −15° to the edge, where the plane carries on to the south celestial pole at infinity. The scale of the sky is decorative: it isn’t tied to the dome’s 1 : 1 000 000.</p>
+  <p>The chart is shown as seen looking up from inside the sky, so it reads mirror-imaged from above. The stars are the roughly 5 000 brighter than magnitude 6 in the Yale Bright Star Catalogue, sized by brightness and coloured by temperature, with constellation lines and circles at declinations 60°, 30° and 0°.</p>
+  <figure><img src="starplane_preview.jpg" alt="Stereographic star chart centred on the north celestial pole, fading out toward the edge" loading="lazy"><figcaption>The star plane (<a href="starplane.png">full 4096 × 4096 image</a>). The ring at 0.414 of the radius is the celestial equator.</figcaption></figure>
 </section>
 
 <section class="card">
@@ -205,11 +222,12 @@ code{font:13px var(--mono)}
   <div class="tbl"><table>
     <thead><tr><th>File</th><th>What it is</th></tr></thead>
     <tbody>
-      <tr><td><a href="NorthAmerica_EarthDome_K2.464.stl">NorthAmerica_EarthDome_K2.464.stl</a></td><td>All 12 bodies, mm, binary STL</td></tr>
-      <tr><td><a href="NorthAmerica_EarthDome_K2.464.solidcraft">NorthAmerica_EarthDome_K2.464.solidcraft</a></td><td>SolidCraft design: colours, star-map decal, thickness parameters</td></tr>
+      <tr><td><a href="NorthAmerica_EarthDome_K2.464.stl">NorthAmerica_EarthDome_K2.464.stl</a></td><td>The 10 landmasses and the ocean slab, mm, binary STL (the star plane is an image, so it isn’t in the STL)</td></tr>
+      <tr><td><a href="NorthAmerica_EarthDome_K2.464.solidcraft">NorthAmerica_EarthDome_K2.464.solidcraft</a></td><td>SolidCraft design: colours, the star plane as an image canvas at z = −50 mm, <code>ocean_thickness</code> parameter</td></tr>
       <tr><td><a href="na_dome_mesh.py">na_dome_mesh.py</a></td><td>Rebuilds the land; <code>--tri</code> sets triangle size (km), <code>--base</code> the lowest coast height (mm)</td></tr>
       <tr><td><a href="pop_scene.py">pop_scene.py</a></td><td>Population colouring, latitude bands and the figures in §4</td></tr>
-      <tr><td><a href="starmap.jpg">starmap.jpg</a></td><td>The star chart</td></tr>
+      <tr><td><a href="starplane.png">starplane.png</a></td><td>The stereographic star plane (transparent edge)</td></tr>
+      <tr><td><a href="starplane.py">starplane.py</a></td><td>Draws the star plane; needs d3-celestial <code>stars.6.json</code> and <code>constellations.lines.json</code></td></tr>
     </tbody>
   </table></div>
   <p>The numbers here are fallible measurements on a model, good to the precision stated. The model’s K is set, not measured; the corner-angle check confirms the mesh carries it.</p>
@@ -222,7 +240,7 @@ code{font:13px var(--mono)}
     <li><b>Report:</b> <a href="../index.html">Theorema Egregium: curvature measured from surveyors’ triangles</a>. K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²; ellipsoid 1/(MN) = 2.462 × 10⁻¹⁴ m⁻² on the same triangles.</li>
     <li><b>Coastlines:</b> Natural Earth, <code>ne_50m_admin_0_countries</code>, continent “North America” (public domain), via <a href="https://github.com/nvkelso/natural-earth-vector">nvkelso/natural-earth-vector</a>.</li>
     <li><b>Populations:</b> Natural Earth, <code>ne_10m_populated_places_simple</code>, field <code>pop_max</code>.</li>
-    <li><b>Stars:</b> Yale Bright Star Catalogue, mag ≤ 6, and constellation lines, via <a href="https://github.com/ofrohn/d3-celestial">ofrohn/d3-celestial</a>.</li>
+    <li><b>Stars:</b> Yale Bright Star Catalogue, mag ≤ 6, declination ≥ −45°, and constellation lines, via <a href="https://github.com/ofrohn/d3-celestial">ofrohn/d3-celestial</a>.</li>
     <li><b>Radius:</b> R = 6 371 km, the IUGG mean Earth radius.</li>
     <li><b>Theorem:</b> Gauss, <i>Disquisitiones generales circa superficies curvas</i> (1827), Arts. 12 and 20.</li>
   </ul>
@@ -238,9 +256,9 @@ const box=document.getElementById('viewer'),st=document.getElementById('vstatus'
 const r=new THREE.WebGLRenderer({antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
 r.outputColorSpace=THREE.SRGBColorSpace;box.appendChild(r.domElement);
 const s=new THREE.Scene();s.background=new THREE.Color(0x3a4150);
-const cam=new THREE.PerspectiveCamera(30,1,10,300000);cam.up.set(0,0,1);
+const cam=new THREE.PerspectiveCamera(30,1,10,600000);cam.up.set(0,0,1);
 const tgt=new THREE.Vector3(-150,300,600);
-const ctl=new OrbitControls(cam,r.domElement);ctl.target.copy(tgt);ctl.enableDamping=true;
+const ctl=new OrbitControls(cam,r.domElement);ctl.target.copy(tgt);ctl.enableDamping=true;ctl.maxDistance=120000;
 s.add(new THREE.HemisphereLight(0xffffff,0x334455,1.3));
 const dl=new THREE.DirectionalLight(0xffffff,1.7);dl.position.set(-5000,-7000,10000);s.add(dl);
 const views={iso:[-25,40,21000],top:[0,89,20000],side:[0,4,16000]};
@@ -249,6 +267,9 @@ function setView(n){const[az,el,d0]=views[n],d=d0*Math.max(1,1.15/cam.aspect),a=
 function size(){const w=box.clientWidth,h=box.clientHeight;r.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();}
 new ResizeObserver(size).observe(box);size();setView('iso');let cur='iso';
 document.querySelectorAll('button.vbtn').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+new THREE.TextureLoader().load('starplane.png',t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
+  const m=new THREE.Mesh(new THREE.CircleGeometry(40000,128),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false}));
+  m.position.set(-50,375,-50.5);m.renderOrder=-1;s.add(m);});
 new STLLoader().load('NorthAmerica_EarthDome_K2.464.stl',g=>{
   const p=g.attributes.position,n=p.count,c=new Float32Array(n*3),col=new THREE.Color();
   for(let i=0;i<n;i+=3){const z=Math.max(p.getZ(i),p.getZ(i+1),p.getZ(i+2));
