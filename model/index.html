@@ -82,16 +82,17 @@ code{font:13px var(--mono)}
 <header>
   <div class="eyebrow">Theorema Egregium · 3D model · NorthAmerica_EarthDome_K2.450</div>
   <h1>North America on Earth’s measured curvature</h1>
-  <p class="lede">A 1 : 1 000 000 model of North America whose top surface has the Gaussian curvature measured in the <a href="../index.html">report</a> from surveyors’ triangles: K = 2.450 × 10⁻¹⁴ m⁻², a sphere of radius 1/√K = 6 388.8 km. It sits on a flat ocean layer above a star plane. Drag to turn it.</p>
+  <p class="lede">A 1 : 1 000 000 model of North America whose top surface has the Gaussian curvature measured in the <a href="../index.html">report</a> from surveyors’ triangles: K = 2.450 × 10⁻¹⁴ m⁻², a sphere of radius 1/√K = 6 388.8 km. The two US triangulation chains the report measured are drawn on it. It sits on a flat ocean layer above a star plane. Drag to turn it.</p>
 </header>
 
 <section class="card viewer-card" aria-label="3D model viewer">
-  <div class="eyebrow">STL · drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
-  <div id="viewer" role="img" aria-label="Rotatable 3D model of North America on a curved dome above a blue ocean slab and a star chart plane"><div id="vstatus">Loading the model…</div></div>
+  <div class="eyebrow">3D model · drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
+  <div id="viewer" role="img" aria-label="Rotatable 3D model of North America on a curved dome, with the US triangulation chains, above a blue ocean slab and a star chart plane"><div id="vstatus">Loading the model…</div></div>
   <div class="vbar">
     <button class="vbtn" data-view="iso">Iso</button>
     <button class="vbtn" data-view="top">Top</button>
     <button class="vbtn" data-view="side">Side</button>
+    <button class="vbtn" data-view="chains">US chains</button>
     <a class="vbtn" href="NorthAmerica_EarthDome_K2.450.stl" download>Download STL</a>
     <a class="vbtn" href="https://github.com/rooster-ninja/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/blob/main/model/NorthAmerica_EarthDome_K2.450.stl">Open in GitHub’s viewer</a>
   </div>
@@ -110,7 +111,7 @@ code{font:13px var(--mono)}
   <p>The sphere’s curvature is not a textbook radius. It is the value the <a href="../index.html">report</a> measured from the angles of 391 triangles in historical surveys (1739–1898), using only angles and ground lengths: <b>K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²</b> (± 0.019 with survey-to-survey scatter). Its radius is 1/√K = 6 388.8 km, with a 1σ range of 6 373–6 404 km.</p>
   <p>At this scale that Earth is a ball 12.8 m across, and North America is a cap on it. The middle of the continent stands 1.9 m higher than its far coasts. That rise isn’t exaggerated: it is how much a sphere with the measured curvature curves away over 3 000–4 000 km.</p>
   <p>The top of the land is made of flat triangles about 100 km on a side, with every corner on the sphere. The flat triangles let you check the curvature the same way the <a href="../index.html">report</a> measures it from surveyors’ triangles: by angles alone (§3).</p>
-  <p>Under the land is a 50 mm ocean slab. Under that is the sky, drawn as a single flat plane: a circle of infinite radius carrying a chart of the stars (§5).</p>
+  <p>Under the land is a 50 mm ocean slab. Under that is the sky, drawn as a single flat plane: a circle of infinite radius carrying a chart of the stars (§6).</p>
 </section>
 
 <section class="card">
@@ -189,7 +190,31 @@ code{font:13px var(--mono)}
 </section>
 
 <section class="card">
-  <div class="eyebrow">5 · The layers underneath</div>
+  <div class="eyebrow">5 · The US triangulation chains</div>
+  <h2>The report’s triangles, back on a curved surface</h2>
+  <p>The two US chains carry most of the report’s result. They are drawn on the dome station to station, from the coordinates in the report’s data file (<a href="../data/arcs_parallel_master.kml">arcs_parallel_master.kml</a>), placed exactly like the coastline. Every printed triangle is outlined. The non-overlapping triangles used in the report’s whole-chain sums are filled with the report’s colour code: each triangle’s observed excess minus the excess the ellipsoid predicts for its area, divided by the survey’s noise, from −3 (blue) to +3 (red).</p>
+  <figure>
+    <img src="chains_iso.png" alt="Isometric view of the dome with the 39th-parallel chain running east–west across the US and the Eastern Oblique chain running from Maine to New Orleans, triangles coloured blue to red" loading="lazy">
+    <figcaption>Isometric view from the south-west. The 39th-parallel chain runs from Chesapeake Bay to Point Arena, California; the Eastern Oblique Arc from Calais, Maine, to New Orleans.</figcaption>
+  </figure>
+  <figure>
+    <img src="chains_top.png" alt="Straight-down view of the US with both triangle chains outlined and coloured" loading="lazy">
+    <figcaption>Straight down on the dome. Gaps along the 39th parallel are stretches with no triangles in the report’s data file.</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Chain (report’s whole-chain sums)</th><th class="n">Triangles drawn</th><th class="n">In the sum</th><th class="n">Area (km²)</th><th class="n">Σ excess observed</th><th class="n">Σ expected (ellipsoid)</th><th class="n">K / K<sub>ell</sub></th><th class="n">R (km)</th></tr></thead>
+    <tbody>
+      <tr><td>US arc of the 39th parallel (Schott 1900)</td><td class="n">465</td><td class="n">241</td><td class="n">322 644</td><td class="n">1 604.3″</td><td class="n">1 638.3″</td><td class="n">0.979 ± 0.012</td><td class="n">6 441</td></tr>
+      <tr><td>Eastern Oblique Arc (Schott 1902)</td><td class="n">281</td><td class="n">114</td><td class="n">112 582</td><td class="n">539.5″</td><td class="n">571.8″</td><td class="n">0.944 ± 0.026</td><td class="n">6 561</td></tr>
+    </tbody>
+  </table></div>
+  <p>These are the report’s whole-chain figures (its chain sums over non-overlapping triangles), not the dome’s K. The dome uses the report’s headline value, K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻², from the triangle-by-triangle fit over all nine surveys. The report reads the chains’ low ratios as a small uniform offset in the printed angle sums (about −0.15″ per triangle) rather than a different curvature.</p>
+  <h3>How they are built</h3>
+  <p>Outlines are rods 4.4 mm across (4.4 km at true scale) along each station-to-station line, 3.6 mm above the sphere. Tiles are the triangles themselves, 3.5 mm thick, on the sphere. In the SolidCraft file each chain is one outline body plus one tile body per colour step (−3 … +3); the STL holds the same geometry without colour. Built by <a href="chain_overlay.py">chain_overlay.py</a>.</p>
+</section>
+
+<section class="card">
+  <div class="eyebrow">6 · The layers underneath</div>
   <h2>Ocean, and the sky as a circle of infinite radius</h2>
   <div class="tbl"><table>
     <thead><tr><th>Layer</th><th class="n">Size (mm)</th><th class="n">Height (mm)</th><th class="n">Curvature K</th></tr></thead>
@@ -221,13 +246,15 @@ code{font:13px var(--mono)}
 </section>
 
 <section class="card">
-  <div class="eyebrow">6 · Files</div>
+  <div class="eyebrow">7 · Files</div>
   <h2>Everything in this folder</h2>
   <div class="tbl"><table>
     <thead><tr><th>File</th><th>What it is</th></tr></thead>
     <tbody>
-      <tr><td><a href="NorthAmerica_EarthDome_K2.450.stl">NorthAmerica_EarthDome_K2.450.stl</a></td><td>The 10 landmasses and the ocean slab, mm, binary STL (the star plane is an image, so it isn’t in the STL)</td></tr>
-      <tr><td><a href="NorthAmerica_EarthDome_K2.450.solidcraft">NorthAmerica_EarthDome_K2.450.solidcraft</a></td><td>SolidCraft design: colours, the star plane as an image canvas at z = −50 mm, <code>ocean_thickness</code> parameter</td></tr>
+      <tr><td><a href="NorthAmerica_EarthDome_K2.450.stl">NorthAmerica_EarthDome_K2.450.stl</a></td><td>The 10 landmasses, the ocean slab and the two US chains, mm, binary STL (no colour; the star plane is an image, so it isn’t in the STL)</td></tr>
+      <tr><td><a href="viewer_scene.glb">viewer_scene.glb</a></td><td>The same land, ocean and chains with colours, for the viewer on this page</td></tr>
+      <tr><td><a href="chain_overlay.py">chain_overlay.py</a>, <a href="chain_overlay.json">chain_overlay.json</a></td><td>Builds the chain overlay (§5) and its per-chain numbers</td></tr>
+      <tr><td><a href="NorthAmerica_EarthDome_K2.450.solidcraft">NorthAmerica_EarthDome_K2.450.solidcraft</a></td><td>SolidCraft design: land, ocean, the US chains as coloured bodies, the star plane as an image canvas at z = −50 mm, <code>ocean_thickness</code> and <code>K_measured</code> parameters</td></tr>
       <tr><td><a href="na_dome_mesh.py">na_dome_mesh.py</a></td><td>Rebuilds the land; <code>--K</code> sets the curvature (default 2.450e-14 m⁻², the report’s value), <code>--tri</code> the triangle size (km), <code>--base</code> the lowest coast height (mm)</td></tr>
       <tr><td><a href="check_deficit.py">check_deficit.py</a>, <a href="deficit_check.json">deficit_check.json</a></td><td>The corner-angle check of K in §3 and its output</td></tr>
       <tr><td><a href="mesh_params.json">mesh_params.json</a></td><td>K, R, lift and triangle size used for this build</td></tr>
@@ -239,6 +266,21 @@ code{font:13px var(--mono)}
   <p>The numbers here are fallible measurements on a model, good to the precision stated. The model’s K is set, not measured; the corner-angle check confirms the mesh carries it.</p>
 </section>
 
+<section class="card">
+  <div class="eyebrow">8 · Revisions</div>
+  <h2>Revision history</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Rev</th><th>Date</th><th>Commit</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>2026-10-23</td><td><code>2ef24ea</code>, <code>c8f2e28</code></td><td style="white-space:normal">First model on a mean-radius sphere (R = 6 371 km, K = 2.464 × 10⁻¹⁴ m⁻²): faceted land, 50 mm ocean slab, 16 m star slab with a star-map decal. Model page with a rotatable STL viewer, the angle-deficit check and the population band.</td></tr>
+      <tr><td>2</td><td>2026-10-23</td><td><code>5d0c52c</code></td><td style="white-space:normal">Population figures redrawn as an isometric view and a flat overhead view.</td></tr>
+      <tr><td>3</td><td>2026-10-23</td><td><code>a036b53</code></td><td style="white-space:normal">Star slab replaced by a single plane: a stereographic chart of the sky, with the note on the circle of infinite radius (1/R² → 0).</td></tr>
+      <tr><td>4</td><td>2026-10-23</td><td><code>dcda6da</code>, <code>c41242a</code></td><td style="white-space:normal">Rebuilt from the ground up on the report’s measured curvature, K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻² (R = 6 388.8 km): new meshes, SolidCraft file, STL, figures and numbers; mean radius kept only as a comparison. Added why K changes the model’s size, not its shape.</td></tr>
+      <tr><td>5</td><td>2026-10-24</td><td>this revision</td><td style="white-space:normal">US triangulation chains (39th parallel and Eastern Oblique) added to the SolidCraft model, the STL and the viewer, with the report’s colour code; isometric and top-down chain figures (§5); this revision history.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
 <button class="src-btn" id="srcbtn" aria-expanded="false" aria-controls="sources">Sources for this page (pages and quotes)</button>
 <section class="card" id="sources" hidden>
   <h2>Sources</h2>
@@ -246,6 +288,7 @@ code{font:13px var(--mono)}
     <li><b>Report:</b> <a href="../index.html">Theorema Egregium: curvature measured from surveyors’ triangles</a>. K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²; ellipsoid 1/(MN) = 2.462 × 10⁻¹⁴ m⁻² on the same triangles.</li>
     <li><b>Coastlines:</b> Natural Earth, <code>ne_50m_admin_0_countries</code>, continent “North America” (public domain), via <a href="https://github.com/nvkelso/natural-earth-vector">nvkelso/natural-earth-vector</a>.</li>
     <li><b>Populations:</b> Natural Earth, <code>ne_10m_populated_places_simple</code>, field <code>pop_max</code>.</li>
+    <li><b>Triangulation chains:</b> Schott, C. A., <i>The Transcontinental Triangulation and the American Arc of the Parallel</i>, USC&amp;GS Special Publication No. 4, 1900; Schott, C. A., <i>The Eastern Oblique Arc of the United States and Osculating Spheroid</i>, USC&amp;GS Special Publication No. 7, 1902; as transcribed and checked in the report’s <code>arcs_parallel_master.kml</code> and <code>triangles_rule.csv</code>.</li>
     <li><b>Stars:</b> Yale Bright Star Catalogue, mag ≤ 6, declination ≥ −45°, and constellation lines, via <a href="https://github.com/ofrohn/d3-celestial">ofrohn/d3-celestial</a>.</li>
     <li><b>Curvature:</b> K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻², the headline result of the <a href="../index.html">report</a> (391 triangles, rule fixed before the run). R = 1/√K = 6 388.8 km. The mean radius 6 371 km is quoted only for comparison.</li>
     <li><b>Theorem:</b> Gauss, <i>Disquisitiones generales circa superficies curvas</i> (1827), Arts. 12 and 20.</li>
@@ -256,7 +299,7 @@ code{font:13px var(--mono)}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
-import {STLLoader} from 'three/addons/loaders/STLLoader.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 const box=document.getElementById('viewer'),st=document.getElementById('vstatus');
 const r=new THREE.WebGLRenderer({antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -267,8 +310,8 @@ const tgt=new THREE.Vector3(-150,300,600);
 const ctl=new OrbitControls(cam,r.domElement);ctl.target.copy(tgt);ctl.enableDamping=true;ctl.maxDistance=120000;
 s.add(new THREE.HemisphereLight(0xffffff,0x334455,1.3));
 const dl=new THREE.DirectionalLight(0xffffff,1.7);dl.position.set(-5000,-7000,10000);s.add(dl);
-const views={iso:[-25,40,21000],top:[0,89,20000],side:[0,4,16000]};
-function setView(n){const[az,el,d0]=views[n],d=d0*Math.max(1,1.15/cam.aspect),a=az*Math.PI/180,e=el*Math.PI/180;
+const views={iso:[-25,40,21000,[-150,300,600]],top:[0,89,20000,[-150,300,600]],side:[0,4,16000,[-150,300,600]],chains:[-20,55,7500,[250,-750,1600]]};
+function setView(n){const[az,el,d0,tg]=views[n];tgt.set(...tg);ctl.target.copy(tgt);const d=d0*Math.max(1,1.15/cam.aspect),a=az*Math.PI/180,e=el*Math.PI/180;
   cam.position.set(tgt.x+d*Math.cos(e)*Math.sin(a),tgt.y-d*Math.cos(e)*Math.cos(a),tgt.z+d*Math.sin(e));ctl.update();}
 function size(){const w=box.clientWidth,h=box.clientHeight;r.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();}
 new ResizeObserver(size).observe(box);size();setView('iso');let cur='iso';
@@ -276,14 +319,9 @@ document.querySelectorAll('button.vbtn').forEach(b=>b.addEventListener('click',(
 new THREE.TextureLoader().load('starplane.png',t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
   const m=new THREE.Mesh(new THREE.CircleGeometry(40000,128),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false}));
   m.position.set(-50,400,-50.5);m.renderOrder=-1;s.add(m);});
-new STLLoader().load('NorthAmerica_EarthDome_K2.450.stl',g=>{
-  const p=g.attributes.position,n=p.count,c=new Float32Array(n*3),col=new THREE.Color();
-  for(let i=0;i<n;i+=3){const z=Math.max(p.getZ(i),p.getZ(i+1),p.getZ(i+2));
-    col.set(z<=-49.5?0x0b1024:z<=0.5?0x1f5f9e:0xc9cdd2);
-    for(let k=0;k<3;k++)c.set([col.r,col.g,col.b],(i+k)*3);}
-  g.setAttribute('color',new THREE.BufferAttribute(c,3));g.computeVertexNormals();
-  s.add(new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,flatShading:true})));
-  st.remove();
+new GLTFLoader().load('viewer_scene.glb',g=>{
+  g.scene.traverse(o=>{if(o.isMesh)o.material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,metalness:0,flatShading:true});});
+  s.add(g.scene);st.remove();
 },undefined,()=>{st.textContent='The model could not be loaded here. Use “Download STL” or GitHub’s viewer.';});
 (function loop(){ctl.update();r.render(s,cam);requestAnimationFrame(loop);})();
 </script>

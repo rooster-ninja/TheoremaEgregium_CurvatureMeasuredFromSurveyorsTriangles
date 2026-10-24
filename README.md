@@ -51,7 +51,7 @@ The angles are the weak link: pointing noise (≈ ± 1.3″ per closure) is the 
 | `sources/` | Page extracts from the scans. `*_annotated.pdf` carry the checks as PDF notes: green = verified, red = misprint |
 | `data/` | The input KML, per-triangle results (`triangles_rule.csv`, `triangles_excess.csv`), fit and chain results as JSON |
 | `scripts/` | Python that reproduces every number and chart; see `scripts/README.md` |
-| [`model/`](model) | 3D model: North America on a dome built with this report's measured curvature (K = 2.450 × 10⁻¹⁴ m⁻²), with an ocean layer and the sky as a star plane. [Model page with rotatable viewer](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/model/), [STL](model/NorthAmerica_EarthDome_K2.450.stl), SolidCraft file, an angle-deficit check of K, and where the population lives on the dome |
+| [`model/`](model) | 3D model: North America on a dome built with this report's measured curvature (K = 2.450 × 10⁻¹⁴ m⁻²), with the US triangulation chains drawn on it, an ocean layer and the sky as a star plane. [Model page with rotatable viewer](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/model/), [STL](model/NorthAmerica_EarthDome_K2.450.stl), SolidCraft file, an angle-deficit check of K, and where the population lives on the dome |
 | [`theorem/`](theorem) | Background: the Theorema Egregium itself. History from Girard to Riemann, the name, what makes a theorem, sphere versus plane, and Earth-scale spherical-excess and circle-deficit tables for a distance-only test. [Read the page](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/theorem/) |
 
 ## Sources

@@ -56,6 +56,21 @@ Output: [`deficit_check.json`](deficit_check.json), from [`check_deficit.py`](ch
 
 80% of North America's city population lives between 19.3° N and 43.7° N (median 34.0° N). Worldwide, half of all city population lives between 13.1° N and 39.0° N (median 29.6° N), and 85% north of the equator. City populations only (Natural Earth populated places, `pop_max`); rural populations are not counted. Built by [`pop_scene.py`](pop_scene.py).
 
+## The US triangulation chains
+
+![US chains on the dome, isometric](chains_iso.png)
+
+![US chains on the dome, top-down](chains_top.png)
+
+The report's two US chains are drawn on the dome station to station from [`../data/arcs_parallel_master.kml`](../data/arcs_parallel_master.kml), placed exactly like the coastline: the US arc of the 39th parallel (Schott 1900, 465 triangles) and the Eastern Oblique Arc (Schott 1902, 281 triangles). Every printed triangle is outlined; the non-overlapping triangles in the report's whole-chain sums are filled with the report's colour code, (observed − expected excess) ÷ noise from −3 (blue) to +3 (red), expected from the ellipsoid.
+
+| Chain (report's whole-chain sums) | Drawn | In the sum | Area (km²) | Σ excess observed | Σ expected (ellipsoid) | K / K_ell | R (km) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| US arc of the 39th parallel | 465 | 241 | 322 644 | 1 604.3″ | 1 638.3″ | 0.979 ± 0.012 | 6 441 |
+| Eastern Oblique Arc | 281 | 114 | 112 582 | 539.5″ | 571.8″ | 0.944 ± 0.026 | 6 561 |
+
+These are the report's chain-sum figures, not the dome's K; the dome uses the headline K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻². In the SolidCraft file each chain is an outline body plus one tile body per colour step; the STL has the same geometry without colour. Built by [`chain_overlay.py`](chain_overlay.py).
+
 ## The star plane: a circle of infinite radius
 
 The sky is drawn as a single flat plane under the ocean. A circle of radius r curves by 1/r and a sphere of radius R has K = 1/R²; as the radius grows without limit both go to zero, so a circle of infinite radius is a line and a sphere of infinite radius is a plane (K = 0).
@@ -66,12 +81,24 @@ The chart is a stereographic projection of the celestial sphere from the south c
 
 | File | What it is |
 | --- | --- |
-| [`NorthAmerica_EarthDome_K2.450.stl`](NorthAmerica_EarthDome_K2.450.stl) | The 10 landmasses and the ocean slab, mm, binary STL. GitHub shows it in a 3D viewer |
-| [`NorthAmerica_EarthDome_K2.450.solidcraft`](NorthAmerica_EarthDome_K2.450.solidcraft) | SolidCraft design: the 10 land meshes, the ocean slab, the star plane as an image canvas at z = −50 mm, `ocean_thickness`, and `K_measured` (with its source in the comment) |
+| [`NorthAmerica_EarthDome_K2.450.stl`](NorthAmerica_EarthDome_K2.450.stl) | The 10 landmasses, the ocean slab and the two US chains, mm, binary STL (no colour). GitHub shows it in a 3D viewer |
+| [`viewer_scene.glb`](viewer_scene.glb) | Land, ocean and chains with colours, for the model page's viewer |
+| [`chain_overlay.py`](chain_overlay.py), [`chain_overlay.json`](chain_overlay.json) | Builds the chain overlay and its per-chain numbers |
+| [`NorthAmerica_EarthDome_K2.450.solidcraft`](NorthAmerica_EarthDome_K2.450.solidcraft) | SolidCraft design: the 10 land meshes, the ocean slab, the US chains as coloured bodies, the star plane as an image canvas at z = −50 mm, `ocean_thickness`, and `K_measured` (with its source in the comment) |
 | [`na_dome_mesh.py`](na_dome_mesh.py) | Rebuilds the land. `--K` curvature (default 2.450e-14 m⁻², the report's value), `--tri` triangle size in km, `--base` lowest coast height in mm, `--stl_dir` one STL per landmass |
 | [`mesh_params.json`](mesh_params.json) | K, R, lift and triangle size for this build |
 | [`check_deficit.py`](check_deficit.py), [`deficit_check.json`](deficit_check.json) | The angle-deficit check and its output |
 | [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
 | [`starplane.png`](starplane.png), [`starplane.py`](starplane.py) | The stereographic star plane and the script that draws it |
 | [`index.html`](index.html) | The model page (GitHub Pages) |
-| `population_iso.png`, `population_top.png`, `preview_*.png` | Population figures and SolidCraft renders |
+| `population_*.png`, `chains_*.png`, `preview_*.png` | Population and chain figures, SolidCraft renders |
+
+## Revisions
+
+| Rev | Date | Commit | Change |
+| --- | --- | --- | --- |
+| 1 | 2026-10-23 | `2ef24ea`, `c8f2e28` | First model on a mean-radius sphere (R = 6 371 km, K = 2.464 × 10⁻¹⁴ m⁻²): faceted land, ocean slab, star slab with star-map decal; model page with STL viewer, angle-deficit check and population band |
+| 2 | 2026-10-23 | `5d0c52c` | Population figures as isometric and flat overhead views |
+| 3 | 2026-10-23 | `a036b53` | Star slab replaced by a single stereographic star plane (circle of infinite radius) |
+| 4 | 2026-10-23 | `dcda6da`, `c41242a` | Rebuilt on the report's measured K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²; why K changes size, not shape |
+| 5 | 2026-10-24 | this revision | US triangulation chains (39th parallel, Eastern Oblique) in the SolidCraft model, STL and viewer with the report's colour code; chain figures; revision history |
