@@ -28,6 +28,7 @@ main{max-width:860px;margin:0 auto;display:grid;gap:28px}
 .eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
 h1{font:600 clamp(34px,6vw,56px)/1.05 var(--display);margin:6px 0 10px;text-wrap:balance;letter-spacing:-.01em}
 h2{font:600 26px/1.2 var(--display);margin:4px 0 8px;text-wrap:balance}
+figure+figure{margin-top:18px}
 .plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:16px 0}
 .plates figure img{border:1px solid var(--rule);background:#fff}
 .plates figcaption{font-size:13.5px}
@@ -160,8 +161,12 @@ code{font:13px var(--mono)}
   <div class="eyebrow">4 · Where people live on the surface</div>
   <h2>A band across the middle of the dome</h2>
   <figure>
-    <img src="population_band.png" alt="The dome coloured by city population density: a bright band from California and the US Northeast down to Mexico City, between blue lines at 19.3 and 43.7 degrees north, with a white line at 34 degrees north" loading="lazy">
-    <figcaption>City population density on the model’s surface. Blue lines: the band holding 80% of North America’s city population. White line: the median latitude.</figcaption>
+    <img src="population_iso.png" alt="Isometric view of the dome coloured by city population density: a bright band from California and the US Northeast down to Mexico City, between blue lines at 19.3 and 43.7 degrees north, with a white line at 34 degrees north" loading="lazy">
+    <figcaption>Isometric view, from the south-west. The band of dense population runs across the southern slope of the dome. Blue lines: the band holding 80% of North America’s city population. White line: the median latitude.</figcaption>
+  </figure>
+  <figure>
+    <img src="population_top.png" alt="Overhead plan view of the dome coloured by city population density, with the same latitude lines" loading="lazy">
+    <figcaption>Flat overhead view, looking straight down on the dome (an orthographic plan, so the coasts far from the centre look a little compressed). The parallels bow because they are circles on the sphere centred on the pole, not on the dome’s centre.</figcaption>
   </figure>
   <div class="tbl"><table>
     <thead><tr><th>Population band (city populations)</th><th class="n">Latitude</th><th class="n">Share</th></tr></thead>

@@ -44,7 +44,9 @@ The angles alone, measured inside the faceted surface, give back the sphere's cu
 
 ## Where people live on the surface
 
-![City population density on the dome](population_band.png)
+![City population density on the dome, isometric](population_iso.png)
+
+![City population density on the dome, overhead](population_top.png)
 
 80% of North America's city population lives between 19.3° N and 43.7° N (median 34.0° N). Worldwide, half of all city population lives between 13.1° N and 39.0° N (median 29.6° N), and 85% north of the equator. City populations only (Natural Earth populated places, `pop_max`); rural populations are not counted. Built by [`pop_scene.py`](pop_scene.py).
 
@@ -62,4 +64,4 @@ The star layer carries a star chart as a decal (in the SolidCraft file only; an 
 | [`starmap.jpg`](starmap.jpg) | The star chart image (4096 × 4096) |
 | [`index.html`](index.html) | The model page (GitHub Pages) |
 | [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
-| `population_band.png`, `preview_*.png` | Figures and SolidCraft renders |
+| `population_iso.png`, `population_top.png`, `preview_*.png` | Population figures (isometric and overhead) and SolidCraft renders |
