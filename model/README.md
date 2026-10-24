@@ -1,46 +1,50 @@
-# North America on an Earth-curvature dome (K = 2.464 × 10⁻¹⁴ m⁻²)
+# North America on the measured curvature (K = 2.450 × 10⁻¹⁴ m⁻²)
 
 ## 📄 [Read the model page, with the rotatable 3D viewer](https://rooster-ninja.github.io/TheoremaEgregium_CurvatureMeasuredFromSurveyorsTriangles/model/)
 
-Also: [STL in GitHub's 3D viewer](NorthAmerica_EarthDome_K2.464.stl)
+Also: [STL in GitHub's 3D viewer](NorthAmerica_EarthDome_K2.450.stl)
 
-![North America Earth dome, iso view](preview_iso.png)
+![North America dome, iso view](preview_iso.png)
 
-A physical companion to the [report](../README.md). The report measures Earth's Gaussian curvature from surveyors' triangles: **K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²** (radius 6 389 km). This model builds the continent on a surface whose curvature is set to Earth's mean value, **K = 1/R² with R = 6 371 km, so K = 2.464 × 10⁻¹⁴ m⁻²**. That value is within the report's error bars (+1.2σ) and 0.1% from the ellipsoid value 1/(MN) = 2.462 × 10⁻¹⁴ m⁻² over the same triangles.
+A physical companion to the [report](../README.md). The report measures the Earth's Gaussian curvature from the angles of 391 surveyors' triangles, using only angles and ground lengths: **K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²** (± 0.019 with survey-to-survey scatter). This model builds North America on a sphere with **that measured curvature**: R = 1/√K = 6 388.8 km (1σ 6 373–6 404 km), scaled 1 : 1 000 000.
+
+For comparison only: the ellipsoid's 1/(MN) over the same triangles is 2.462 × 10⁻¹⁴ m⁻² (measured/ellipsoid = 0.995 ± 0.005), and a sphere of the 6 371 km mean radius has 2.464 × 10⁻¹⁴ m⁻².
 
 ## What it is
 
 | Item | Value |
 | --- | --- |
+| Curvature K (set) | 2.450 × 10⁻¹⁴ m⁻², measured in the [report](../README.md) |
 | Scale | 1 : 1 000 000 (1 mm = 1 km) |
-| Sphere radius in the model | 6 371 mm, so K = 2.464 × 10⁻⁸ mm⁻² |
+| Sphere radius in the model | 6 388.8 mm (K = 2.450 × 10⁻⁸ mm⁻²) |
 | Projection centre | 45° N, 100° W |
 | Coastline | Natural Earth 1:50m, lightly averaged (inlets and capes under ~25 km rounded off) |
 | Landmasses | Mainland (Alaska to Panama), Greenland, Baffin, Victoria, Ellesmere, Banks, Devon, Newfoundland, Cuba, Hispaniola |
 | Top surface | Flat triangles about 100 km on a side; every vertex lies exactly on the sphere |
-| Height | Peak 1 934 mm above the base (near the projection centre); lowest coastline point 50 mm (far side of Greenland) |
+| Height | Peak 1 938 mm above the base (near the projection centre); lowest coastline point 50 mm (far side of Greenland) |
+| Mainland footprint | 6 077 × 7 199 mm |
 | Base | Flat at z = 0, with vertical walls along the coast |
-| Ocean layer | 6 900 × 8 550 × 50 mm, z = −50 to 0 |
+| Ocean layer | 6 900 × 8 600 × 50 mm, z = −50 to 0 |
 | Star plane | A single plane at z = −50 mm, drawn as a disc 80 m across (a circle of infinite radius, K = 0) |
 
-The coastline is placed where it sits on the sphere, not on a flat map: points are laid out by distance along the surface from the centre (azimuthal equidistant) and lifted onto the sphere. The 1.9 m rise across the model is Earth's curvature at this scale. Across North America the surface drops about 1 900 km below a plane touching it at the centre.
+Coastline points are laid out by distance along the surface from the centre (azimuthal equidistant) and lifted onto the sphere. Positions are set by angle, so K sets the size of everything: the measured K (a slightly larger sphere than the 6 371 km mean radius) makes the model 0.28% larger than a mean-radius one, with the same shape.
 
 ![Side view](preview_front.png)
 
 ## The faceted top as a Theorema Egregium check
 
-Each flat triangle has zero curvature inside it. All the curvature sits at the corners, as an **angle deficit**: 2π minus the sum of the angles meeting at a vertex. This is the same rule the report uses for survey triangles (angle excess = K × area), turned around.
+Each flat triangle has zero curvature inside it. All the curvature sits at the corners, as an **angle deficit**: 2π minus the angles meeting at a vertex. It is the report's rule (angle excess = K × area) turned around.
 
 | Check on the model's top surface | Value |
 | --- | --- |
-| Interior vertices | 2 416 |
-| Total angle deficit | 0.508 46 rad (104 878″) |
-| Area belonging to those vertices | 20 625 339 mm² |
-| K from deficit ÷ area | 2.465 × 10⁻⁸ mm⁻² |
-| 1/R² | 2.464 × 10⁻⁸ mm⁻² |
-| Ratio | **1.0006** |
+| Interior vertices | 2 423 |
+| Total angle deficit | 0.508 01 rad (104 784″) |
+| Area belonging to those vertices | 20 720 084 mm² |
+| K from deficit ÷ area | 2.4518 × 10⁻⁸ mm⁻² |
+| K set (report's measured value) | 2.4500 × 10⁻⁸ mm⁻² |
+| Ratio | **1.0007** |
 
-The angles alone, measured inside the faceted surface, give back the sphere's curvature. That is Gauss's result on a small scale.
+Output: [`deficit_check.json`](deficit_check.json), from [`check_deficit.py`](check_deficit.py).
 
 ## Where people live on the surface
 
@@ -52,18 +56,20 @@ The angles alone, measured inside the faceted surface, give back the sphere's cu
 
 ## The star plane: a circle of infinite radius
 
-The sky is drawn as a single flat plane under the ocean, not a slab. A circle of radius r curves by 1/r and a sphere of radius R has K = 1/R²; as the radius grows without limit both go to zero, so a circle of infinite radius is a line and a sphere of infinite radius is a plane (K = 0).
+The sky is drawn as a single flat plane under the ocean. A circle of radius r curves by 1/r and a sphere of radius R has K = 1/R²; as the radius grows without limit both go to zero, so a circle of infinite radius is a line and a sphere of infinite radius is a plane (K = 0).
 
-The chart is a stereographic projection of the celestial sphere from the south celestial pole, r = 2 tan((90° − δ)/2): the north celestial pole is at the centre, the celestial equator at r = 2, and the south pole at infinity, so the whole sky lies on an infinite plane. It is drawn to δ = −45° on a disc 80 m across at z = −50 mm and fades out from −15° to the edge. It is seen from inside the sky, so it reads mirror-imaged from above. Stars: the ~5 000 brighter than magnitude 6 in the Yale Bright Star Catalogue (via [d3-celestial](https://github.com/ofrohn/d3-celestial)). Image: [`starplane.png`](starplane.png); the STL doesn't include it (STL holds shape, not images), but the model page and the SolidCraft file do.
+The chart is a stereographic projection of the celestial sphere from the south celestial pole, r = 2 tan((90° − δ)/2): the north celestial pole is at the centre, the celestial equator at r = 2, and the south pole at infinity. It is drawn to δ = −45° on a disc 80 m across at z = −50 mm and fades out from −15° to the edge. Seen from inside the sky, so it reads mirror-imaged from above. Stars: the ~5 000 brighter than magnitude 6 in the Yale Bright Star Catalogue (via [d3-celestial](https://github.com/ofrohn/d3-celestial)). Image: [`starplane.png`](starplane.png). The STL doesn't include it (STL holds shape, not images); the model page and the SolidCraft file do.
 
 ## Files
 
 | File | What it is |
 | --- | --- |
-| [`NorthAmerica_EarthDome_K2.464.stl`](NorthAmerica_EarthDome_K2.464.stl) | The 10 landmasses and the ocean slab, mm, binary STL. GitHub shows it in a 3D viewer |
-| [`NorthAmerica_EarthDome_K2.464.solidcraft`](NorthAmerica_EarthDome_K2.464.solidcraft) | SolidCraft design: the 10 land meshes, the ocean slab, the star plane as an image canvas at z = −50 mm, and the `ocean_thickness` parameter |
-| [`na_dome_mesh.py`](na_dome_mesh.py) | Rebuilds the land meshes. `--tri` sets triangle size in km, `--base` the lowest coast height in mm. Needs Natural Earth `ne_50m_admin_0_countries.geojson` |
-| [`starplane.png`](starplane.png), [`starplane.py`](starplane.py) | The stereographic star plane (4096 × 4096, transparent edge) and the script that draws it |
-| [`index.html`](index.html) | The model page (GitHub Pages) |
+| [`NorthAmerica_EarthDome_K2.450.stl`](NorthAmerica_EarthDome_K2.450.stl) | The 10 landmasses and the ocean slab, mm, binary STL. GitHub shows it in a 3D viewer |
+| [`NorthAmerica_EarthDome_K2.450.solidcraft`](NorthAmerica_EarthDome_K2.450.solidcraft) | SolidCraft design: the 10 land meshes, the ocean slab, the star plane as an image canvas at z = −50 mm, `ocean_thickness`, and `K_measured` (with its source in the comment) |
+| [`na_dome_mesh.py`](na_dome_mesh.py) | Rebuilds the land. `--K` curvature (default 2.450e-14 m⁻², the report's value), `--tri` triangle size in km, `--base` lowest coast height in mm, `--stl_dir` one STL per landmass |
+| [`mesh_params.json`](mesh_params.json) | K, R, lift and triangle size for this build |
+| [`check_deficit.py`](check_deficit.py), [`deficit_check.json`](deficit_check.json) | The angle-deficit check and its output |
 | [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
-| `population_iso.png`, `population_top.png`, `preview_*.png` | Population figures (isometric and overhead) and SolidCraft renders |
+| [`starplane.png`](starplane.png), [`starplane.py`](starplane.py) | The stereographic star plane and the script that draws it |
+| [`index.html`](index.html) | The model page (GitHub Pages) |
+| `population_iso.png`, `population_top.png`, `preview_*.png` | Population figures and SolidCraft renders |

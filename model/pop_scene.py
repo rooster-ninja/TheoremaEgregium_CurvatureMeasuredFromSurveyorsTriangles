@@ -6,8 +6,13 @@ from shapely.prepared import prep
 from pyproj import Transformer
 import matplotlib.cm as cm
 
-R = 6371.0
-LIFT = 1934.25  # from na_dome_mesh.py run (--base 50)
+import sys
+# usage: pop_scene.py <mesh.3mf> <mesh_params.json> [out.glb]; params come from na_dome_mesh.py
+MESH = sys.argv[1] if len(sys.argv) > 1 else "north_america_dome.3mf"
+PRM = json.load(open(sys.argv[2] if len(sys.argv) > 2 else MESH.rsplit(".", 1)[0] + "_params.json"))
+OUT = sys.argv[3] if len(sys.argv) > 3 else "pop_scene.glb"
+R = PRM["R_mm"]      # sphere radius, mm (= km at 1:1 000 000), R = 1/sqrt(K)
+LIFT = PRM["lift_mm"]
 aeqd = Transformer.from_crs("EPSG:4326", f"+proj=aeqd +lat_0=45 +lon_0=-100 +R={R*1000} +units=km", always_xy=True)
 inv = Transformer.from_crs(f"+proj=aeqd +lat_0=45 +lon_0=-100 +R={R*1000} +units=km", "EPSG:4326", always_xy=True)
 
@@ -52,7 +57,7 @@ cu = unit(nlon, nlat)
 sig = 150.0 / R  # 150 km kernel
 
 scene = trimesh.Scene()
-src = trimesh.load("north_america_dome_tri100.3mf")
+src = trimesh.load(MESH)
 dens_all = []
 parts = []
 for name, g in src.geometry.items():
@@ -80,10 +85,9 @@ for name, g, dens in parts:
     scene.add_geometry(m, node_name=name)
 
 # ocean + star slabs
-oc = trimesh.creation.box(extents=[6900, 8550, 50]); oc.apply_translation([-3500 + 3450, -3900 + 4275, -25])
+oc = trimesh.creation.box(extents=[6900, 8600, 50]); oc.apply_translation([-3500 + 3450, -3900 + 4300, -25])
 oc.visual.face_colors = [4, 30, 87, 255]; scene.add_geometry(oc, node_name="Ocean")
-st = trimesh.creation.box(extents=[16000, 16000, 50]); st.apply_translation([-50, 375, -75])
-st.visual.face_colors = [1, 1, 5, 255]; scene.add_geometry(st, node_name="Stars")
+
 
 # latitude lines on the dome, only over land; sphere point lifted with LIFT
 land_aeqd = None
@@ -123,6 +127,6 @@ def lat_line(la, color, radius):
 lat_line(q10, [10, 120, 230, 255], 20)
 lat_line(q90, [10, 120, 230, 255], 20)
 lat_line(q50, [255, 255, 255, 255], 16)
-scene.export("pop_scene.glb")
+scene.export(OUT)
 json.dump(stats, open("pop_stats.json", "w"), indent=1)
 print("ok")

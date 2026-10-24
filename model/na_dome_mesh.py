@@ -2,7 +2,8 @@
 """
 North America on a true-scale Earth sphere, faceted triangle top, flat base.
 
-Scale: 1 mm = 1 km. Earth radius R = 6371 mm. Projection centre 45N 100W.
+Scale: 1 mm = 1 km. Sphere radius R from the measured curvature K (default K = 2.450e-14 m^-2,
+the value measured from surveyors' triangles in the report), R = 1/sqrt(K). Projection centre 45N 100W.
 Coastline: Natural Earth 1:50m, lightly averaged (small inlets/peninsulas rounded).
 Each landmass -> one closed (watertight) mesh body:
   top    = triangles whose vertices lie exactly on the sphere,
@@ -25,9 +26,12 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--tri", type=float, default=100.0)
 ap.add_argument("--base", type=float, default=50.0)
 ap.add_argument("--countries", default="ne/countries50.geojson")
+ap.add_argument("--K", type=float, default=2.450e-14, help="Gaussian curvature, m^-2")
 ap.add_argument("--out", default="north_america_dome.3mf")
+ap.add_argument("--stl_dir", default=None, help="also write one STL per landmass here")
 a = ap.parse_args()
-R = 6371.0
+R = 1.0 / math.sqrt(a.K) / 1000.0  # km (= mm in the model)
+print(f"K = {a.K:.4e} m^-2  ->  R = {R:.2f} km")
 S = a.tri
 
 # --- outlines in azimuthal-equidistant coords (distance along the surface from centre) ---
@@ -118,7 +122,6 @@ for name, V2, F, top, bpts in out:
         tt = nt + t
         tris.append(tuple(tt) if n[2] < 0 else (tt[0], tt[2], tt[1]))
     objs.append((name, verts, np.array(tris)))
-    edges = np.hypot(*np.diff(np.vstack([top[F[:, 0]], top[F[:, 1]]]).reshape(2, -1, 3)[:, :, :2], axis=0)[0].T) if False else None
     print(f"{name:17s} top triangles {len(F):6d}  vertices {len(verts):6d}  "
           f"peak z {top[:,2].max():8.1f}  coast z {top[:nb,2].min():6.1f}-{top[:nb,2].max():6.1f}")
 
@@ -144,4 +147,17 @@ with zipfile.ZipFile(a.out, "w", zipfile.ZIP_DEFLATED) as z:
                '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
                '<Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>')
     z.writestr("3D/3dmodel.model", "\n".join(model))
-print("wrote", a.out, "lift", round(lift, 2))
+print("wrote", a.out, "lift", round(lift, 3))
+json.dump({"K_m2": a.K, "R_mm": R, "lift_mm": lift, "tri_km": S, "base_mm": a.base}, open(a.out.rsplit(".", 1)[0] + "_params.json", "w"), indent=1)
+if a.stl_dir:
+    import os, struct
+    os.makedirs(a.stl_dir, exist_ok=True)
+    for name, V, T in objs:
+        fn = os.path.join(a.stl_dir, name.replace(" ", "_") + ".stl")
+        with open(fn, "wb") as fh:
+            fh.write(name.encode()[:80].ljust(80, b" ")); fh.write(struct.pack("<I", len(T)))
+            for t in T:
+                p0, p1, p2 = V[t[0]], V[t[1]], V[t[2]]
+                n = np.cross(p1 - p0, p2 - p0); n = n / (np.linalg.norm(n) or 1)
+                fh.write(struct.pack("<12fH", *n, *p0, *p1, *p2, 0))
+    print("STLs in", a.stl_dir)
