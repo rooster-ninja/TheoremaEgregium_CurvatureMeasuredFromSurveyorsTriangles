@@ -31,7 +31,11 @@ Coastline points are laid out by distance along the surface from the centre (azi
 
 **Why the measured K changes the size, not the shape.** The coastline is placed by latitude and longitude, which are angles. On a sphere, distance along the surface = radius × angle, so the continent's size comes from the sphere's size. The measured K (2.450 × 10⁻¹⁴ m⁻²) gives a radius of 6 388.8 km, 0.28% larger than the 6 371 km mean radius. The same angles on a larger sphere make the whole model 0.28% larger: wider, longer, and taller at the peak (1 938 mm instead of 1 934). The shape is identical, because all spheres are the same shape at different sizes. With the coastline fixed by angles, K changes only the model's overall size, not its proportions.
 
-![Side view](preview_front.png)
+**Is the dome exaggerated?** No: one scale, 1 mm = 1 km, up and across. The far coasts are about 45° of arc from the centre, so they sit about 0.29 R ≈ 1 850 km below a plane touching it. It looks higher than a globe because the base and ocean are flat; on the Earth the coasts sit at sea level, which curves with the land.
+
+![Side view looking east](side_east.png)
+
+![Isometric projection with the US survey chains](isometric.png)
 
 ## The faceted top as a Theorema Egregium check
 
@@ -91,7 +95,7 @@ The chart is a stereographic projection of the celestial sphere from the south c
 | [`pop_scene.py`](pop_scene.py) | Population colouring and latitude bands |
 | [`starplane.png`](starplane.png), [`starplane.py`](starplane.py) | The stereographic star plane and the script that draws it |
 | [`index.html`](index.html) | The model page (GitHub Pages) |
-| `population_*.png`, `chains_*.png`, `preview_*.png` | Population and chain figures, SolidCraft renders |
+| `population_*.png`, `chains_*.png`, `side_east.png`, `isometric.png`, `preview_*.png` | Population, chain, side and isometric figures; SolidCraft renders |
 
 ## Revisions
 
@@ -101,4 +105,5 @@ The chart is a stereographic projection of the celestial sphere from the south c
 | 2 | 2026-10-23 | `5d0c52c` | Population figures as isometric and flat overhead views |
 | 3 | 2026-10-23 | `a036b53` | Star slab replaced by a single stereographic star plane (circle of infinite radius) |
 | 4 | 2026-10-23 | `dcda6da`, `c41242a` | Rebuilt on the report's measured K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻²; why K changes size, not shape |
-| 5 | 2026-10-24 | this revision | US triangulation chains (39th parallel, Eastern Oblique) in the SolidCraft model, STL and viewer with the report's colour code; chain figures; revision history |
+| 5 | 2026-10-24 | `9a63e4a` | US triangulation chains (39th parallel, Eastern Oblique) in the SolidCraft model, STL and viewer with the report's colour code; chain figures; revision history |
+| 6 | 2026-10-28 | this revision | Side view looking east and true isometric projection with the survey chains; note that the dome is not exaggerated |

@@ -137,6 +137,16 @@ code{font:13px var(--mono)}
   <p>Each coastline point is laid out by its distance and direction along the surface from 45° N 100° W (azimuthal equidistant), then lifted onto the sphere: a point at surface distance s from the centre lands at angle c = s/R, at (R sin c) out and (R cos c) up. Distances measured on the dome along great circles from the centre are therefore true to scale. The walls drop straight down to a flat base at z = 0.</p>
   <h3>Why the measured K changes the size, not the shape</h3>
   <p>The coastline is placed by latitude and longitude, which are angles. On a sphere, distance along the surface = radius × angle, so the continent’s size comes from the sphere’s size. The measured K (2.450 × 10⁻¹⁴ m⁻²) gives a radius of 6 388.8 km, 0.28% larger than the 6 371 km mean radius. The same angles on a larger sphere make the whole model 0.28% larger: wider, longer, and taller at the peak (1 938 mm instead of 1 934). The shape is identical, because all spheres are the same shape at different sizes. With the coastline fixed by angles, K changes only the model’s overall size, not its proportions.</p>
+  <h3>Is the dome exaggerated?</h3>
+  <p>No. The model uses one scale, 1 mm = 1 km, up and across, so there is no vertical exaggeration; shrinking it to any size keeps the same shape. The rise is the sphere curving away from the centre: the far coasts are about 45° of arc from 45° N 100° W, and 1 − cos 45° ≈ 0.29, so they sit about 0.29 R ≈ 1 850 km below a plane touching the centre. What makes it look higher than a globe is the flat base and flat ocean: on the Earth the coasts sit at sea level, which curves down with the land, so the tall coastal walls here don’t exist.</p>
+  <figure>
+    <img src="side_east.png" alt="Side view of the dome looking east: a smooth arc 1938 mm high over about 8 m, north on the left, south on the right" loading="lazy">
+    <figcaption>Side view looking east, orthographic, same scale up and across. North (Greenland’s north coast) on the left, south (Panama) on the right.</figcaption>
+  </figure>
+  <figure>
+    <img src="isometric.png" alt="True isometric view of the whole model with the two US triangle chains labelled" loading="lazy">
+    <figcaption>True isometric projection from the south-west (35.26° above horizontal, equal scale on all three axes), with both US survey chains (§5).</figcaption>
+  </figure>
   <h3>Coastline and landmasses</h3>
   <p>Natural Earth 1:50m country outlines for the North American continent. Inlets and capes narrower than about 25 km are rounded off, so the outline is averaged, not detailed. Ten landmasses are separate closed solids: the mainland (Alaska to Panama), Greenland, Baffin, Victoria, Ellesmere, Banks and Devon islands, Newfoundland, Cuba and Hispaniola. Smaller islands and Hawaii are left out.</p>
 </section>
@@ -276,7 +286,8 @@ code{font:13px var(--mono)}
       <tr><td>2</td><td>2026-10-23</td><td><code>5d0c52c</code></td><td style="white-space:normal">Population figures redrawn as an isometric view and a flat overhead view.</td></tr>
       <tr><td>3</td><td>2026-10-23</td><td><code>a036b53</code></td><td style="white-space:normal">Star slab replaced by a single plane: a stereographic chart of the sky, with the note on the circle of infinite radius (1/R² → 0).</td></tr>
       <tr><td>4</td><td>2026-10-23</td><td><code>dcda6da</code>, <code>c41242a</code></td><td style="white-space:normal">Rebuilt from the ground up on the report’s measured curvature, K = 2.450 ± 0.012 × 10⁻¹⁴ m⁻² (R = 6 388.8 km): new meshes, SolidCraft file, STL, figures and numbers; mean radius kept only as a comparison. Added why K changes the model’s size, not its shape.</td></tr>
-      <tr><td>5</td><td>2026-10-24</td><td>this revision</td><td style="white-space:normal">US triangulation chains (39th parallel and Eastern Oblique) added to the SolidCraft model, the STL and the viewer, with the report’s colour code; isometric and top-down chain figures (§5); this revision history.</td></tr>
+      <tr><td>5</td><td>2026-10-24</td><td><code>9a63e4a</code></td><td style="white-space:normal">US triangulation chains (39th parallel and Eastern Oblique) added to the SolidCraft model, the STL and the viewer, with the report’s colour code; isometric and top-down chain figures (§5); this revision history.</td></tr>
+      <tr><td>6</td><td>2026-10-28</td><td>this revision</td><td style="white-space:normal">Side view looking east and a true isometric projection with the survey chains, with a note that the dome is not exaggerated (§2).</td></tr>
     </tbody>
   </table></div>
 </section>
